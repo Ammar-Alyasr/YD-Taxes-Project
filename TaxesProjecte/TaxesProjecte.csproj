@@ -204,6 +204,7 @@
     <Content Include="Service References\GovernmentService\TaxesProjecte.GovernmentService.GovermentDebt.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

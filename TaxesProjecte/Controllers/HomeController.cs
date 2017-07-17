@@ -18,7 +18,7 @@ namespace TaxesProjecte.Controllers
     {
         GV_ServisClient client = new GV_ServisClient();
 
-
+        
 
         // GET: Home
         /// <summary>
@@ -28,7 +28,6 @@ namespace TaxesProjecte.Controllers
         /// <returns></returns>
         public ActionResult Login()
         {
-
             return View();
         }
 

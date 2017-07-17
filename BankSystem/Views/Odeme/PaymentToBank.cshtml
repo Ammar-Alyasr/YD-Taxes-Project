@@ -63,6 +63,21 @@
                 $("#lblData").html(data);
             }
         });
+
+
+        
+        //start pay processsss
+        $(function () {
+            
+            $("#payBased").bind("click", function () {
+                var clean = decodeURIComponent(queryString["ur"])
+                var us = clean+"?pay=";
+                var url = us + encodeURIComponent("1");
+                window.location.href = url;
+                            
+            });
+        });
+        //end
     </script>
     @* End Get Data by URl *@
 
@@ -120,7 +135,7 @@
                     </li>
                 </ul>
                 <br />
-                <a href="#" class="btn btn-success btn-lg btn-block" role="button">Öde</a>
+                <a id="payBased" class="btn btn-success btn-lg btn-block" role="button">Öde</a>
             </div>
         </div>
     </div>
