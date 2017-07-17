@@ -1,5 +1,6 @@
 ﻿@model TaxesProjecte.Models.citizen
 
+
 @{
     ViewBag.Title = "AnaSayfa";
 }
@@ -86,7 +87,7 @@
 
     @if (Session["name"] != null)
     {
-
+        <div id="hide">
 
             <table class="table" id="tbl">
                 <tr>
@@ -115,18 +116,50 @@
 
             </div>
 
-
+            
             <script type="text/javascript">
-                        $(function () {
-                            $("#btnQueryString").bind("click", function () {
-                                var cleanUrl = 'http://localhost:55555/Home/UserDashBoard';
+                //Start Send Paramaters Through URL to Payment Page
+                $(function () {
+                    $("#btnQueryString").bind("click", function () {
+                        var cleanUrl = 'http://localhost:55555/Home/UserDashBoard';
 
-                             var url = "http://localhost:61249/Odeme/PaymentToBank?amunt=" + encodeURIComponent(@i.ToString()) + "&Tc=" + encodeURIComponent(@Session["id"].ToString()) + "&ur=" + encodeURIComponent(cleanUrl.toString());
-                             window.location.href = url;
-                            
-                        });
+                        var url = "http://localhost:61249/Odeme/PaymentToBank?amunt=" + encodeURIComponent(@i.ToString()) + "&Tc=" + encodeURIComponent(@Session["id"].ToString()) + "&ur=" + encodeURIComponent(cleanUrl.toString());
+                        window.location.href = url;
+
                     });
+                });
+
+
+                //Start Getting Result From Payment Page
+                var queryString = new Array();
+                $(function () {
+
+                    if (queryString.length == 0) {
+                        if (window.location.search.split('?').length > 1) {
+                            var params = window.location.search.split('?')[1].split('&');
+                            for (var i = 0; i < params.length; i++) {
+                                var key = params[i].split('=')[0];
+                                var value = decodeURIComponent(params[i].split('=')[1]);
+                                queryString[key] = value;
+                            }
+                        }
+                    }
+
+                    
+                    if (queryString["pay"] != null) {
+
+                        
+                        $("#hide").hide();
+
+                        
+                    }
+                });
+                //End Getting Result From Payment Page
+
+                //End Send Paramaters Through URL to Payment Page
             </script>
+           
+        </div>
     }
 
 

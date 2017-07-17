@@ -59,6 +59,7 @@ namespace TaxesProjecte.Controllers
             return View(objUser);
         }
 
+
         public ActionResult UserDashBoard()
         {
             if (Session["id"] != null)
@@ -66,39 +67,40 @@ namespace TaxesProjecte.Controllers
                 string tcNo = Session["id"].ToString();
 
                 var st = client.GetUsersDataByTcNo(tcNo);
-                
-                foreach(var itm in st)
-                {
-                    
-                }
 
                 ViewBag.liste = st.ToList();
-                
-                
                 return View();
             }
+
             else
             {
                 return RedirectToAction("Login");
             }
         }
 
-
-        [HttpGet]
-        public ActionResult PaymentToBank()
+        [HttpPost]
+        public ActionResult UserDashBoard(citizen obj)
         {
 
-            string tcNo = Session["id"].ToString();
-            decimal i = 0m;
-
-            var st = client.GetUsersDataByTcNo(tcNo);
-            foreach (var itm in st)
-            {
-                i += itm.amount;
-            }
-            ViewData["denene"] = i;
-           
-            return View();
+            return RedirectToAction("Login");
         }
+
+
+        //[HttpGet]
+        //public ActionResult PaymentToBank()
+        //{
+
+        //    string tcNo = Session["id"].ToString();
+        //    decimal i = 0m;
+
+        //    var st = client.GetUsersDataByTcNo(tcNo);
+        //    foreach (var itm in st)
+        //    {
+        //        i += itm.amount;
+        //    }
+        //    ViewData["denene"] = i;
+           
+        //    return View();
+        //}
     }
 }

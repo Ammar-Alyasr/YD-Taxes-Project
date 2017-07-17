@@ -38,7 +38,7 @@ namespace BankSystem.Controllers
         public ActionResult PaymentToBank()
         {
 
-
+            var request = Request.Form;
             return View();
         }
     }
