@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="aac669a9-3105-41e5-a3ff-2a2ab69732f2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:55051/GV_Servis.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GV_Servis.disco" MetadataType="Disco" ID="e8cb2ca3-4381-49e4-a65f-f42d673d43c1" SourceId="1" SourceUrl="http://localhost:55051/GV_Servis.svc?disco" />
+    <MetadataFile FileName="GV_Servis3.xsd" MetadataType="Schema" ID="5b674be7-1bb9-4d7e-a3c2-99e1f9994f76" SourceId="1" SourceUrl="http://localhost:55051/GV_Servis.svc?xsd=xsd2" />
+    <MetadataFile FileName="GV_Servis.wsdl" MetadataType="Wsdl" ID="d00d983e-3eb6-4075-9256-70f7891155f1" SourceId="1" SourceUrl="http://localhost:55051/GV_Servis.svc?wsdl" />
+    <MetadataFile FileName="GV_Servis1.xsd" MetadataType="Schema" ID="b23bac7f-b950-44c1-9a11-ebeee06c0d12" SourceId="1" SourceUrl="http://localhost:55051/GV_Servis.svc?xsd=xsd0" />
+    <MetadataFile FileName="GV_Servis2.xsd" MetadataType="Schema" ID="61353067-d401-4cd2-b6d8-c290d315d7d6" SourceId="1" SourceUrl="http://localhost:55051/GV_Servis.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

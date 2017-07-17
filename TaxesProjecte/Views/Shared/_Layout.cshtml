@@ -3,35 +3,47 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title -e-Vergi Giriş Sistemi</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" type="text/css" rel="stylesheet"/>
+
+    <style>
+        body{
+           /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d6f9ff+0,9ee8fa+100;Blue+3D */
+background: #d6f9ff; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #d6f9ff 0%, #9ee8fa 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #d6f9ff 0%,#9ee8fa 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #d6f9ff 0%,#9ee8fa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6f9ff', endColorstr='#9ee8fa',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        }
+        .navbar-header{
+            position: relative;
+            left:auto;
+            left:40%
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+            @*<div class="navbar-header">
+                <img src="http://lorempicsum.com/futurama/627/200/3" width="50%" height="200%"/>
+            </div>*@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                 </ul>
             </div>
         </div>
     </div>
-
+    <br /><br /><br /><br />
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>

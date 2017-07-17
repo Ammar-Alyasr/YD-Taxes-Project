@@ -1,18 +1,36 @@
 ﻿@model TaxesProjecte.Models.citizen
 
 @{
-    ViewBag.Title = "UserDashBoard";
+    ViewBag.Title = "AnaSayfa";
 }
 
+@{ 
+    decimal i = 0m;
+}
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/core.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/ 1.13.1/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.2/jquery.validate.unobtrusive.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>
+</head>
 
 
 <style>
-    a {
+
+    body{
+        background:#F5F5F5;
+    }
+    h2{
+        margin-bottom:50px;
+        color:aqua
     }
 
     table {
         border-collapse: collapse;
-        width: 100%;
+        width: 50%;
     }
 
     th, td {
@@ -21,86 +39,88 @@
     }
 
     tr:nth-child(even) {
-        background-color: #f2f2f2;
+        background-color: #D9EDF7;
     }
 
     th {
-        background-color: #4CAF50;
+        background-color: #468847;
         color: white;
     }
 
     .border-top {
         color: red;
     }
-</style>
 
-<fieldset>
-
-    <legend> User DashBoard </legend>
-
-
-    @if (Session["email"] != null)
-    {
-        <text>
-            Welcome @Session["email"].ToString()
-            @*<br />
-            @ViewBag.email1
-            <br />
-            @ViewBag.email
-            <br />
-            @ViewBag.email3
-            <br />
-            ismi = @ViewBag.ismi
-            <br />
-            emaili = @ViewBag.emaili
-            <br />*@
-
-            <a href='@Url.Action("MyAction", "Home")'>Buraya bas</a>
-
-
-
-        </text>
-
-        <table>
-            <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Savings</th>
-            </tr>
-            <tr>
-                <td>Peter</td>
-                <td>Griffin</td>
-                <td>$100</td>
-            </tr>
-
-            <tr>
-                <td>Lois</td>
-                <td>Griffin</td>
-                <td>$150</td>
-            </tr>
-            <tr>
-                <td>Joe</td>
-                <td>Swanson</td>
-                <td>$300</td>
-            </tr>
-            <tr>
-                <td>Cleveland</td>
-                <td>Brown</td>
-                <td>$250</td>
-
-            </tr>
-
-            <tr>
-
-                <td></td>
-                <td></td>
-                <td class="border-top">525252</td>
-
-            </tr>
-
-        </table>
-
+    .col-md-4{
+        float:right;
+        width:350px;
     }
 
-</fieldset> 
+    .logo{
+        margin-bottom: 15px;
+        margin-top: -106px;
+            margin-left: 25%;
+    }
 
+
+</style>
+
+
+
+<div class="logo">
+    <img src="~/fonts/images/gelir-idaresi-baskanligi.jpg" width="705px" height="117px"/>
+</div>
+
+<fieldset>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+
+    <br />
+    <legend> Merhaba @Session["name"].ToString() </legend>
+
+
+    @if (Session["name"] != null)
+    {
+
+        <table class="table">
+            <tr>
+                <th>Vergi Türü</th>
+                <th>Son Ödemen Tarihi</th>
+                <th>Miktar</th>
+                <th></th>
+            </tr>
+            @foreach (var item in ViewBag.liste)
+            {
+               <tr>
+                   <td>@item.kindOfdebt</td>  
+                   <td>@item.paid_time</td>   
+                   <td>@item.amount <span class="glyphicon glyphicon-usd" aria-hidden="true"></span></td>
+                   <td><a href='@Url.Action("MyAction", "Home")'><span class="label label-info">Öde</span></a></td>
+               </tr>
+                i += @item.amount;
+            }
+        </table>
+        <hr />
+            <div class="col-md-4 col-md-offset-4">
+                <h3> <small>Toplam Burcunuz =</small>@i</h3> 
+                 
+                @*<input type="button" id="btnQueryString" value="Send" />*@
+                 <a id="btnQueryString"><span class="btn btn-info" style="float:right;margin-top: -40px; margin-right: -14px;">Hepsini Öde </span></a>
+                
+            </div>
+            <script type="text/javascript">
+                        $(function () {
+                        $("#btnQueryString").bind("click", function () {
+                        var url = "http://localhost:61249/Odeme/PaymentToBank?amunt=" + encodeURIComponent(@i.ToString()) + "&Tc=" + encodeURIComponent(@Session["id"].ToString());
+                            window.location.href = url;
+                            
+                        });
+                    });
+            </script>
+    }
+
+
+    
+
+</fieldset> 

@@ -1,5 +1,6 @@
 namespace TaxesProjecte.Migrations
 {
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -9,23 +10,18 @@ namespace TaxesProjecte.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(TaxesProjecte.Data_Access.Context context)
         {
-            //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.citizens_tbl.AddOrUpdate(
+              p => p.citizen_name,
+              new citizen {  citizen_name = "toor" , id=123, tc_no="99559453436", email="ammarik@com", password="root"}
+            );
+
         }
     }
 }

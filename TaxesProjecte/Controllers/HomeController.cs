@@ -8,20 +8,26 @@ using TaxesProjecte.Migrations;
 using TaxesProjecte.Controllers;
 using TaxesProjecte.Models;
 using TaxesProjecte.Data_Access;
+using TaxesProjecte.GovernmentService;
+
+
 
 namespace TaxesProjecte.Controllers
 {
     public class HomeController : Controller
     {
-        //WebServisClient client = new WebServisClient();
+        GV_ServisClient client = new GV_ServisClient();
+
+
 
         // GET: Home
+        /// <summary>
+        /// 3d secure how to work js
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Login()
         {
-            //string isim = "Ammmamamamar";
-            //ViewBag.msj = client.BirTaneHelloWorldGonderBanaBakayim(isim);
-            //ViewBag.hesapla = client.hesapla(3, 2);
-
 
             return View();
         }
@@ -31,23 +37,18 @@ namespace TaxesProjecte.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(citizen objUser)
         {
-
-            //GvServiceReference.GV_ServisClient clientService = new GvServiceReference.GV_ServisClient();
-            //GvServiceReference.Users user = clientService.GetDogsWithBreedNames("99559453436");
-
-
-
+            
             if (ModelState.IsValid)
             {
                 using (Context db = new Context())
                 {
-                    var obj = db.citizens_tbl.Where(a => a.email.Equals(objUser.email) && a.password.Equals(objUser.password)).FirstOrDefault();
+                    var obj = db.citizens_tbl.Where(a => a.tc_no.Equals(objUser.tc_no) && a.password.Equals(objUser.password)).FirstOrDefault();
                     if (obj != null)
                     {
                         //burada devlet serverine tc no ile bir sorgulama yapilacak, 
                         //geri gelen list halinde olan veriler session ile dashboard sayfasina gonderilecek
                         Session["id"] = obj.tc_no.ToString();
-                        Session["email"] = obj.citizen_name.ToString();
+                        Session["name"] = obj.citizen_name.ToString();
 
 
 
@@ -59,53 +60,46 @@ namespace TaxesProjecte.Controllers
             return View(objUser);
         }
 
-        public void MyAction()
-        {
-
-        }
         public ActionResult UserDashBoard()
         {
-
-
-
             if (Session["id"] != null)
             {
                 string tcNo = Session["id"].ToString();
 
-                ViewBag.email1 = Session["id"].ToString();
+                var st = client.GetUsersDataByTcNo(tcNo);
+                
+                foreach(var itm in st)
+                {
+                    
+                }
 
-                //string list ile getirme
-                //ViewBag.email = client.emailGetir(tcNo);
-
-                //var hello = client.emailGetir(tcNo);
-
-                //ViewData["MyData"] = hello;
-
-
-                List<citizen> begle = new List<citizen>();
-
-                //string[] veriler = client.emailGetir(tcNo);
-
-
-                //ViewBag.email3 = veriler[0];
-
-
-                //Dictionary ile getirme 
-                Dictionary<string, string> bunlar =
-                                                new Dictionary<string, string>();
-                //bunlar = client.emailGetir2(tcNo);
-                //string isim = bunlar["ismi"];
-                //string emaili = bunlar["emaili"];
-
-                //ViewBag.ismi = isim;
-                //ViewBag.emaili = emaili;
-
+                ViewBag.liste = st.ToList();
+                
+                
                 return View();
             }
             else
             {
                 return RedirectToAction("Login");
             }
+        }
+
+
+        [HttpGet]
+        public ActionResult PaymentToBank()
+        {
+
+            string tcNo = Session["id"].ToString();
+            decimal i = 0m;
+
+            var st = client.GetUsersDataByTcNo(tcNo);
+            foreach (var itm in st)
+            {
+                i += itm.amount;
+            }
+            ViewData["denene"] = i;
+           
+            return View();
         }
     }
 }
