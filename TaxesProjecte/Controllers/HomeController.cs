@@ -9,8 +9,7 @@ using TaxesProjecte.Controllers;
 using TaxesProjecte.Models;
 using TaxesProjecte.Data_Access;
 using TaxesProjecte.GovernmentService;
-
-
+using System.Web.Services;
 
 namespace TaxesProjecte.Controllers
 {
@@ -84,7 +83,6 @@ namespace TaxesProjecte.Controllers
 
             return RedirectToAction("Login");
         }
-
 
         //[HttpGet]
         //public ActionResult PaymentToBank()

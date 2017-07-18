@@ -17,7 +17,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
-    
+
     <style>
         body {
             margin-top: 20px;
@@ -49,32 +49,36 @@
 
             if (queryString.length == 0) {
                 if (window.location.search.split('?').length > 1) {
-                    var params =  window.location.search.split('?')[1].split('&');
+                    var params = window.location.search.split('?')[1].split('&');
                     for (var i = 0; i < params.length; i++) {
                         var key = params[i].split('=')[0];
                         var value = decodeURIComponent(params[i].split('=')[1]);
                         queryString[key] = value;
                     }
                 }
-            }
+            } 
             if (queryString["amunt"] != null && queryString["Tc"] != null) {
+                var veri = { tc: queryString["Tc"] };
+                $.post("http://localhost:55051/GV_Servis.svc/Deneme", veri, function (success) {
+                    alert(success);
 
+                })
                 var data = queryString["amunt"];
                 $("#lblData").html(data);
             }
         });
 
 
-        
+
         //start pay processsss
         $(function () {
-            
+
             $("#payBased").bind("click", function () {
                 var clean = decodeURIComponent(queryString["ur"])
-                var us = clean+"?pay=";
+                var us = clean + "?pay=";
                 var url = us + encodeURIComponent("1");
                 window.location.href = url;
-                            
+
             });
         });
         //end
@@ -92,7 +96,7 @@
 
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" method="post">
                             <div class="form-group">
                                 <label for="cardNumber">
                                     Kart Numarası
@@ -140,6 +144,6 @@
         </div>
     </div>
 
- 
+
 </body>
 </html>

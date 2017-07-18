@@ -7,17 +7,20 @@ using System.Net.Http;
 using System.Text;
 using System.Net;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace BankSystem.Controllers
 {
     public class OdemeController : Controller
     {
-        private static readonly HttpClient client = new HttpClient();
+        //GV_ServisClient client = new GV_ServisClient();
+        //private static readonly HttpClient client = new HttpClient();
 
         // GET: Odeme
         public ActionResult Index()
         {
-
+            //int a = (int)TempData["asd"];
             return View();
         }
 
@@ -37,9 +40,26 @@ namespace BankSystem.Controllers
 
         public ActionResult PaymentToBank()
         {
+            //TempData["asd"] = 3;
+            //var request = Request.Form;
 
-            var request = Request.Form;
-            return View();
+            return View() ;
+
         }
+
+     
+        
+        //public ActionResult ASD(string tc)
+        //{
+        //    string id = Session["id"].ToString();
+         
+
+        //    //TempData["asd"] = 3;
+
+        //    //var request = Request.Form;
+
+        //    return View();
+
+        //}
     }
 }
