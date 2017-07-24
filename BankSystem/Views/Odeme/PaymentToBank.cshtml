@@ -44,7 +44,9 @@
 
     @* Start Get Data by URl *@
     <script type="text/javascript">
+
         var queryString = new Array();
+       
         $(function () {
 
             if (queryString.length == 0) {
@@ -59,10 +61,8 @@
             } 
             if (queryString["amunt"] != null && queryString["Tc"] != null) {
                 var veri = { tc: queryString["Tc"] };
-                $.post("http://localhost:55051/GV_Servis.svc/Deneme", veri, function (success) {
-                    alert(success);
+                
 
-                })
                 var data = queryString["amunt"];
                 $("#lblData").html(data);
             }
@@ -70,13 +70,13 @@
 
 
 
-        //start pay processsss
+        //start pay processsss (its true or flase)
         $(function () {
 
             $("#payBased").bind("click", function () {
                 var clean = decodeURIComponent(queryString["ur"])
                 var us = clean + "?pay=";
-                var url = us + encodeURIComponent("1");
+                var url = us + encodeURIComponent("1") + "&gelenAmunt=" + encodeURIComponent(document.getElementById("lblData").innerText);
                 window.location.href = url;
 
             });

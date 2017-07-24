@@ -15,8 +15,6 @@ namespace TaxesProjecte.Controllers
 {
     public class HomeController : Controller
     {
-        GV_ServisClient client = new GV_ServisClient();
-
         
 
         // GET: Home
@@ -43,12 +41,9 @@ namespace TaxesProjecte.Controllers
                     var obj = db.citizens_tbl.Where(a => a.tc_no.Equals(objUser.tc_no) && a.password.Equals(objUser.password)).FirstOrDefault();
                     if (obj != null)
                     {
-                        //burada devlet serverine tc no ile bir sorgulama yapilacak, 
-                        //geri gelen list halinde olan veriler session ile dashboard sayfasina gonderilecek
+                       
                         Session["id"] = obj.tc_no.ToString();
                         Session["name"] = obj.citizen_name.ToString();
-
-
 
                         return RedirectToAction("UserDashBoard");
 
@@ -58,6 +53,18 @@ namespace TaxesProjecte.Controllers
             return View(objUser);
         }
 
+
+        GV_ServisClient client = new GV_ServisClient();
+
+        /// <summary>
+        /// Bankadan 1 gelirse, servisten borclar siliniyor...
+        /// </summary>
+        [HttpPost]
+        public ActionResult delete()
+        {
+            client.Delete(Session["id"].ToString());
+            return RedirectToAction("http://localhost:55555/Home/UserDashBoard");
+        }
 
         public ActionResult UserDashBoard()
         {
@@ -84,21 +91,5 @@ namespace TaxesProjecte.Controllers
             return RedirectToAction("Login");
         }
 
-        //[HttpGet]
-        //public ActionResult PaymentToBank()
-        //{
-
-        //    string tcNo = Session["id"].ToString();
-        //    decimal i = 0m;
-
-        //    var st = client.GetUsersDataByTcNo(tcNo);
-        //    foreach (var itm in st)
-        //    {
-        //        i += itm.amount;
-        //    }
-        //    ViewData["denene"] = i;
-           
-        //    return View();
-        //}
     }
 }

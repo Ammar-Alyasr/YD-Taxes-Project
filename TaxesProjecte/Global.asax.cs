@@ -13,6 +13,10 @@ namespace TaxesProjecte
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            
         }
+
+
     }
 }

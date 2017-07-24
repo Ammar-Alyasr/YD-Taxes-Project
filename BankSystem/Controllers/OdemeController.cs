@@ -14,8 +14,6 @@ namespace BankSystem.Controllers
 {
     public class OdemeController : Controller
     {
-        //GV_ServisClient client = new GV_ServisClient();
-        //private static readonly HttpClient client = new HttpClient();
 
         // GET: Odeme
         public ActionResult Index()
@@ -34,7 +32,6 @@ namespace BankSystem.Controllers
 
         public ActionResult getir()
         {
-
             return View();
         }
 
@@ -46,20 +43,5 @@ namespace BankSystem.Controllers
             return View() ;
 
         }
-
-     
-        
-        //public ActionResult ASD(string tc)
-        //{
-        //    string id = Session["id"].ToString();
-         
-
-        //    //TempData["asd"] = 3;
-
-        //    //var request = Request.Form;
-
-        //    return View();
-
-        //}
     }
 }

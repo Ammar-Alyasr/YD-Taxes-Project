@@ -26,6 +26,9 @@ namespace TaxesProjecte.GovernmentService {
         private decimal amountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool isPayedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string kindOfdebtField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -53,6 +56,19 @@ namespace TaxesProjecte.GovernmentService {
                 if ((this.amountField.Equals(value) != true)) {
                     this.amountField = value;
                     this.RaisePropertyChanged("amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool isPayed {
+            get {
+                return this.isPayedField;
+            }
+            set {
+                if ((this.isPayedField.Equals(value) != true)) {
+                    this.isPayedField = value;
+                    this.RaisePropertyChanged("isPayed");
                 }
             }
         }
@@ -110,6 +126,12 @@ namespace TaxesProjecte.GovernmentService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GovernmentService.IGV_Servis")]
     public interface IGV_Servis {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGV_Servis/Delete", ReplyAction="http://tempuri.org/IGV_Servis/DeleteResponse")]
+        string Delete(string tc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGV_Servis/Delete", ReplyAction="http://tempuri.org/IGV_Servis/DeleteResponse")]
+        System.Threading.Tasks.Task<string> DeleteAsync(string tc);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGV_Servis/GetUsersDataByTcNo", ReplyAction="http://tempuri.org/IGV_Servis/GetUsersDataByTcNoResponse")]
         TaxesProjecte.GovernmentService.GovermentDebt[] GetUsersDataByTcNo(string tc);
         
@@ -142,6 +164,14 @@ namespace TaxesProjecte.GovernmentService {
         
         public GV_ServisClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string Delete(string tc) {
+            return base.Channel.Delete(tc);
+        }
+        
+        public System.Threading.Tasks.Task<string> DeleteAsync(string tc) {
+            return base.Channel.DeleteAsync(tc);
         }
         
         public TaxesProjecte.GovernmentService.GovermentDebt[] GetUsersDataByTcNo(string tc) {

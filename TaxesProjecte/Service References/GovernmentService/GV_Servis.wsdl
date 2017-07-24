@@ -7,6 +7,12 @@
       <xsd:import schemaLocation="http://localhost:55051/GV_Servis.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfService1.Models" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IGV_Servis_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IGV_Servis_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
   <wsdl:message name="IGV_Servis_GetUsersDataByTcNo_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUsersDataByTcNo" />
   </wsdl:message>
@@ -14,13 +20,26 @@
     <wsdl:part name="parameters" element="tns:GetUsersDataByTcNoResponse" />
   </wsdl:message>
   <wsdl:portType name="IGV_Servis">
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGV_Servis/Delete" message="tns:IGV_Servis_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGV_Servis/DeleteResponse" message="tns:IGV_Servis_Delete_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetUsersDataByTcNo">
       <wsdl:input wsaw:Action="http://tempuri.org/IGV_Servis/GetUsersDataByTcNo" message="tns:IGV_Servis_GetUsersDataByTcNo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGV_Servis/GetUsersDataByTcNoResponse" message="tns:IGV_Servis_GetUsersDataByTcNo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IGV_Servis" type="tns:IGV_Servis">
+  <wsdl:binding name="BasicHttp" type="tns:IGV_Servis">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/IGV_Servis/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUsersDataByTcNo">
       <soap:operation soapAction="http://tempuri.org/IGV_Servis/GetUsersDataByTcNo" style="document" />
       <wsdl:input>
@@ -32,7 +51,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="GV_Servis">
-    <wsdl:port name="BasicHttpBinding_IGV_Servis" binding="tns:BasicHttpBinding_IGV_Servis">
+    <wsdl:port name="BasicHttp" binding="tns:BasicHttp">
       <soap:address location="http://localhost:55051/GV_Servis.svc" />
     </wsdl:port>
   </wsdl:service>

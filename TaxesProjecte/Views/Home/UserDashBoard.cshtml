@@ -118,14 +118,13 @@
             <div class="col-md-4 col-md-offset-4">
                 <h3> <small>Toplam Burcunuz =</small>@i</h3>
 
-                @*<input type="button" id="btnQueryString" value="Send" />*@
                 <a id="btnQueryString"><span class="btn btn-info" style="float:right;margin-top: -40px; margin-right: -14px;">Hepsini Öde </span></a>
 
             </div>
 
             
             <script type="text/javascript">
-                //Start Send Paramaters Through URL to Payment Page
+                //Start Send Paramaters Through URL into Payment Page
                 $(function () {
                     $("#btnQueryString").bind("click", function () {
                         var cleanUrl = 'http://localhost:55555/Home/UserDashBoard';
@@ -150,15 +149,31 @@
                                 queryString[key] = value;
                             }
                         }
+    
                     }
 
-                    
-                    if (queryString["pay"] != null) {
-
+                    @*if(queryString["amunt2"]!=@i.ToString()){
+                        swal("Odemeniz hatalidir","","warning"),
+                        window.location.assign("http://localhost:55555/Home/Login");
+                    }*@
+                    if( queryString["gelenAmunt"] == @i.ToString()  && queryString["pay"] != null) {
                         
-                        //$("#hide").hide();
-                        //swal("Ödemeniz Başarıyla Gereçekleşti !", "", "success");
-                       }
+                        //location.reload();
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/delete",
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            
+                        });
+
+                        swal("Ödemeniz Başarıyla Gereçekleşti !", "", "success");
+                    }
+                    else{
+                        swal("Hataaaaaa !", "Beni kandiramazsiniz hahaha", "warning");
+                        window.location.assign("http://localhost:55555/Home/Login");
+                    }
+
                 });
                 //End Getting Result From Payment Page
 

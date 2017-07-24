@@ -9,6 +9,7 @@
   <xs:complexType name="GovermentDebt">
     <xs:sequence>
       <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="isPayed" type="xs:boolean" />
       <xs:element minOccurs="0" name="kindOfdebt" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="paid" type="xs:decimal" />
       <xs:element minOccurs="0" name="paid_time" type="xs:dateTime" />
